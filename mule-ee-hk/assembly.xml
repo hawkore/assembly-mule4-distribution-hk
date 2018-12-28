@@ -1,0 +1,189 @@
+<!-- Assembly descriptor for Mule distribution with ignite clustering module -->
+<assembly>
+	<id>full</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<!-- Copy mule distribution -->
+		<fileSet>
+			<directory>${project.build.directory}/tmp/assembly/mule-enterprise-standalone-${mule.version}</directory>
+			<outputDirectory></outputDirectory>
+			<excludes>
+				<exclude>conf/log4j2.xml</exclude>
+				<exclude>conf/wrapper.conf</exclude>
+                <exclude>bin/**</exclude>
+                <exclude>lib/boot/exec/**</exclude>
+			</excludes>
+		</fileSet>
+
+		<!-- Cluster basic config -->
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>conf/**</include>
+            </includes>
+        </fileSet>
+
+		<!-- Make binary files executable. -->
+		<fileSet>
+			<directory>${project.build.directory}/tmp/assembly/mule-enterprise-standalone-${mule.version}/bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<fileMode>755</fileMode>
+			<includes>
+				<include>amc_debug</include>
+				<include>amc_setup</include>
+				<include>mule</include>
+				<include>launcher</include>
+				<include>setup_local_instance.sh</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/tmp/assembly/mule-enterprise-standalone-${mule.version}/bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<fileMode>644</fileMode>
+			<includes>
+				<include>*.groovy</include>
+				<include>*.bat</include>
+				<include>*.conf</include>
+				<include>*.txt</include>
+			</includes>
+		</fileSet>
+
+        <!--
+            ============================
+            Services
+            ============================
+        -->
+        <fileSet>
+            <directory>${project.build.directory}/tmp/assembly/mule-enterprise-standalone-${mule.version}/services</directory>
+            <outputDirectory>services</outputDirectory>
+            <includes>
+                <include>*.zip</include>
+            </includes>
+        </fileSet>
+
+		<fileSet>
+			<directory>${project.build.directory}/tmp/assembly/mule-enterprise-standalone-${mule.version}/lib/boot/exec</directory>
+			<outputDirectory>lib/boot/exec</outputDirectory>
+			<fileMode>755</fileMode>
+			<excludes>
+                <exclude>*.txt</exclude>
+				<exclude>*.exe</exclude>
+			</excludes>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/tmp/assembly/mule-enterprise-standalone-${mule.version}/lib/boot/exec</directory>
+			<outputDirectory>lib/boot/exec</outputDirectory>
+			<fileMode>644</fileMode>
+			<includes>
+                <include>*.txt</include>
+				<include>*.exe</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+    <!--
+    ============================
+        Libraries
+    ============================
+    -->
+
+    <!-- TODO: Update to use wildcards once this issue is fixed:
+   http://jira.codehaus.org/browse/MASSEMBLY-220 -->
+	<dependencySets>
+		<!-- Adds Mule ignite cluster dependencies to user directory -->
+		<dependencySet>
+			<outputDirectory>lib/user</outputDirectory>
+			<useStrictFiltering>true</useStrictFiltering>
+			<useProjectArtifact>false</useProjectArtifact>
+			<!-- avoid timestamp sufix renaming for SNAPSHOTS -->
+			<outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}
+			</outputFileNameMapping>
+			<includes>
+				<include>org.jetbrains:annotations</include>
+
+				<include>com.amazonaws:aws-java-sdk-core</include>
+				<include>com.amazonaws:aws-java-sdk-kms</include>
+				<include>com.amazonaws:aws-java-sdk-s3</include>
+
+				<include>javax.cache:cache-api</include>
+
+				<include>com.h2database:h2</include>
+
+				<include>org.gridgain:ignite-shmem</include>
+				<include>org.apache.ignite:ignite-aws</include>
+				<include>org.apache.ignite:ignite-core</include>
+				<include>org.apache.ignite:ignite-indexing</include>			
+				<include>org.apache.ignite:ignite-log4j2</include>
+				<include>org.apache.ignite:ignite-spring</include>
+
+				<include>com.googlecode.json-simple:json-simple</include>
+				<include>com.google.protobuf:protobuf-java</include>
+
+				<include>org.locationtech.jts:jts-core</include>
+				<include>org.locationtech.jts.io:jts-io-common</include>
+
+				<include>de.javakaffee:kryo-serializers</include>
+
+				<include>com.esotericsoftware:minlog</include>
+				<include>com.esotericsoftware:kryo-shaded</include>
+
+				<include>org.apache.lucene:lucene-analyzers-common</include>
+				<include>org.apache.lucene:lucene-core</include>
+				<include>org.apache.lucene:lucene-queries</include>
+				<include>org.apache.lucene:lucene-queryparser</include>
+				<include>org.apache.lucene:lucene-sandbox</include>
+			
+
+				<include>org.objenesis:objenesis</include>
+				<include>com.univocity:univocity-parsers</include>
+
+
+				<include>com.hawkore.libs.ignite:hk-ignite-tools</include>
+				<include>com.hawkore.libs.ignite:hk-ignite-serializer</include>
+				<include>com.hawkore.libs.mule:hk-mule-module-ignite-cluster</include>
+
+				<!-- 
+				uncomment BELOW INCLUDES to add Hawkore's Advanced Ignite Extensions (Hawkore's Apache Ignite Version)
+				-->
+
+				<!-- 
+
+				<include>com.hawkore.libs.ignite:hk-ignite-indexing</include>
+				<include>org.hawkore.libs.ignite:hk-ignite-lucene-builder</include>	 
+				<include>org.apache.lucene:lucene-misc</include>
+				<include>org.apache.lucene:lucene-spatial</include>
+				<include>org.apache.lucene:lucene-spatial3d</include>
+				<include>org.locationtech.spatial4j:spatial4j</include>
+				<include>org.fusesource:sigar</include>
+
+				-->
+
+				<!-- Spring dependencies -->
+
+				<include>org.springframework:spring-aop</include>
+				<include>org.springframework:spring-beans</include>
+				<include>org.springframework:spring-context</include>
+				<include>org.springframework:spring-context-support</include>
+				<include>org.springframework:spring-core</include>
+				<include>org.springframework:spring-expression</include>
+				<include>org.springframework:spring-jdbc</include>
+				<include>org.springframework:spring-jms</include>
+				<include>org.springframework:spring-messaging</include>
+				<include>org.springframework:spring-tx</include>
+				<include>org.springframework:spring-web</include>
+				<include>org.springframework.ldap:spring-ldap-core</include>
+				<include>org.springframework.security:spring-security-config</include>
+				<include>org.springframework.security:spring-security-core</include>
+				<include>org.springframework.security:spring-security-ldap</include>
+				<include>org.springframework.security:spring-security-web</include>
+
+			</includes>
+		</dependencySet>
+	</dependencySets>
+</assembly>

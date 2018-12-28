@@ -1,0 +1,13 @@
+<!-- Assembly descriptor for docker container with Mule distribution with 
+	ignite clustering module -->
+<assembly>
+	<fileSets>
+		<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory></outputDirectory>
+			<includes>
+				<include>mule-ee-standalone-hk-*.zip</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

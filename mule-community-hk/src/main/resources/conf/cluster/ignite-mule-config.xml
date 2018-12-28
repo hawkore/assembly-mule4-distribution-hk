@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ignite configuration for a mule node -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd   		
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<context:property-placeholder location="file://${mule.ignite.cluster.configlocation}/ignite.node.${env}.properties" />
+
+	<!-- Imports default Ignite configuration -->
+	<import resource="ignite-default-config.xml" />
+
+
+	<!-- Default mule ObjectStore configuration -->
+	<bean id="_defaultObjectStoreConfig" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="cacheMode" value="PARTITIONED" />
+		<!--property name="atomicityMode" value="ATOMIC" /-->
+		<property name="writeSynchronizationMode" value="PRIMARY_SYNC" />
+		<property name="rebalanceMode" value="SYNC"/> 
+		<property name="backups" value="1" />
+  		<property name="copyOnRead" value="false"/>
+
+  		<property name="readFromBackup" value="true"/>
+		<!-- USE AS DEFAULT CONFIGURATION - ALL CACHES WILL BE CREATED WITH THIS dataRegionName -->
+		<property name="dataRegionName" value="_defaultObjectStoreNotPersistedDataRegion" />
+		
+		 <!-- Enabling on-heap caching for this distributed cache. -->
+		<!--property name="onheapCacheEnabled" value="true"/-->
+		  
+		<!-- FIFO eviction policy. -->
+		<!--property name="evictionPolicy">
+		    <bean class="org.apache.ignite.cache.eviction.fifo.FifoEvictionPolicy">
+				<property name="batchSize" value="1" />
+				<property name="maxSize" value="#{100 * 1000}" />
+				<property name="maxMemorySize" value="#{10l * 1024 * 1024}" />
+		    </bean>
+		</property -->
+
+	</bean>
+
+	<!-- Default mule Queue configuration -->
+	<bean id="_defaultQueueConfig" class="org.apache.ignite.configuration.CollectionConfiguration">
+		<property name="cacheMode" value="PARTITIONED" />
+		<!--property name="atomicityMode" value="ATOMIC" /-->
+		<property name="backups" value="1" />
+<!-- 		<property name="groupName" value="${ignite.this.node.gridname}_queue_group"/> -->
+		<property name="collocated" value="true" />
+
+	</bean>
+
+	<bean parent="ignite.cfg">
+	
+		<!-- Add some cluster node metadata - useful to send a distributed event to selected cluster nodes based on metadata-->
+	    <property name="userAttributes">
+	        <map>
+	            <entry key="ROLE" value="MULE_NODE"/>
+	        </map>
+	    </property>
+		<!-- Durable memory configuration for this Apache Ignite node. The durable memory is a manageable off-heap based memory architecture-->
+		<property name="dataStorageConfiguration">
+			<bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+			
+				<!-- Default initial size of a memory chunk for the system cache (40 MB) -->
+		         <property name="systemRegionInitialSize" value="#{40l * 1024 * 1024}"/>
+		
+				<!-- Default max size of a memory chunk for the system cache (100 MB) -->
+				 <property name="systemRegionMaxSize" value="#{100l * 1024 * 1024}"/>
+
+			     <!-- Enable write throttling. -->
+			     <property name="writeThrottlingEnabled" value="true"/>
+
+		         <!-- Set the page size to 4 KB -->
+      			<property name="pageSize" value="#{4 * 1024}"/>
+
+				<!-- Default data region for caches-->
+		         <property name="defaultDataRegionConfiguration">
+		              <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+		              	<!-- This name is assigned to default Dataregion if no user-defined default MemPlc is specified -->
+		                  <property name="name" value="default"/>
+		                  <!-- Data region start size (256 MB). Default data region start size (100 MB) -->
+
+		                  <property name="initialSize" value="#{100l * 1024 * 1024}"/>
+		                  
+		                  <!-- Data region's max size 1G. Default data region's max size is 20% of physical memory available on current machine.-->
+		                  <property name="maxSize" value="#{1l * 1024 * 1024 * 1024}"/>
+
+		                  <!-- Increasing the buffer size to 1 GB. default 256MB-->
+					      <property name="checkpointPageBufferSize" value="#{256L * 1024 * 1024}"/>
+
+		                  <!-- Enabling Ignite Native Persistence on disk -->
+						  <property name="persistenceEnabled" value="${ignite.this.node.persistence.enabled}" />
+		              </bean>
+		         </property>
+				<!-- Data regions to use with caches, if not specified on cache dataRegionName, defaultDataRegionConfiguration will be use -->
+				<!-- Default data region inital size (256 MB) -->
+				<!-- Default data region's max size is 20% of physical memory available on current machine.-->     
+				<property name="dataRegionConfigurations">
+				    <list>
+				         <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+				             <property name="name" value="_defaultObjectStorePersistedDataRegion"/>
+				             
+				             <property name="initialSize" value="#{100l * 1024 * 1024}"/>
+
+				             <property name="maxSize" value="#{1l * 1024 * 1024 * 1024}"/>	
+
+					          <!-- Increasing the buffer size to 1 GB. default 256MB-->
+					         <property name="checkpointPageBufferSize" value="#{256L * 1024 * 1024}"/>
+
+				             <!-- Enabling Ignite Native Persistence on disk - could be particular configure instead of use global flag -->  
+				             <property name="persistenceEnabled" value="true" />
+				         </bean>
+				         <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+				             <property name="name" value="_defaultQueuePersistedDataRegion"/>
+				             
+				             <property name="initialSize" value="#{100l * 1024 * 1024}"/>
+				             
+				             <property name="maxSize" value="#{1l * 1024 * 1024 * 1024}"/>
+
+					          <!-- Increasing the buffer size to 1 GB. default 256MB-->
+					         <property name="checkpointPageBufferSize" value="#{256L * 1024 * 1024}"/>
+
+				             <!-- Enabling Ignite Native Persistence on disk - could be particular configure instead of use global flag -->  
+				             <property name="persistenceEnabled" value="true" />
+				         </bean>				
+				         <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+				             <property name="name" value="_defaultObjectStoreNotPersistedDataRegion"/>
+				             
+				             <property name="initialSize" value="#{100l * 1024 * 1024}"/>
+		                  	 
+		                  	 <property name="maxSize" value="#{1l * 1024 * 1024 * 1024}"/>
+
+				             <property name="persistenceEnabled" value="false" />
+				         </bean>
+				         <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+
+				             <property name="name" value="_defaultQueueNotPersistedDataRegion"/>
+				             
+				             <property name="initialSize" value="#{100l * 1024 * 1024}"/>
+		                  	 
+		                  	 <property name="maxSize" value="#{1l * 1024 * 1024 * 1024}"/>
+
+				             <property name="persistenceEnabled" value="false" />
+				         </bean>
+				     </list>
+				 </property>
+				
+				<!--  The changes are guaranteed to be persisted to disk for 
+					every atomic write or transactional commit. -->
+				<property name="walMode" value="${ignite.this.node.persistence.walMode}" />
+				
+				<!-- Sets a path to the root directory where data and indexes are to 
+					be persisted. It's assumed the directory is on a separated SSD. -->
+				<property name="storagePath" value="${ignite.this.node.persistence.storagePath}" />
+				
+				<!-- Sets a path to the directory where WAL is stored. It's assumed the 
+					directory is on a separated HDD. -->
+				<property name="walPath" value="${ignite.this.node.persistence.walPath}" />
+				
+				<!-- Sets a path to the directory where WAL archive is stored. The directory 
+					is on the same HDD as the WAL. -->
+				<property name="walArchivePath" value="${ignite.this.node.persistence.walArchivePath}" />
+			</bean>
+		</property>	
+	    <property name="gridLogger">
+	        <bean class="org.apache.ignite.logger.log4j2.Log4J2Logger">
+	            <constructor-arg type="java.lang.String" value="${ignite.this.node.config}/ignite-log4j2.xml"/>
+	        </bean>
+	    </property>
+	    
+  		<!-- Explicitly configure TCP discovery SPI to provide list of initial  nodes. -->
+		  <property name="discoverySpi">
+		    <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+				<!-- Initial local port to listen to. -->
+				<property name="localPort" value="${ignite.this.node.ipfinder.localport}"/>
+				<!-- Changing local port range. This is an optional action. -->
+				<property name="localPortRange" value="${ignite.this.node.ipfinder.portrange}"/>
+
+				<property name="ipFinder" ref="${ignite.this.node.ipfinder.bean}"/>
+				<property name="threadPriority" value="1"/>
+			</bean>
+		  </property> 
+
+	</bean>
+</beans>
