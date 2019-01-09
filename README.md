@@ -2,18 +2,20 @@
 
 ![connector](assets/core-extension.png)
 
-- Requirements
+*All company names, logos, brand names and trademarks are property of their respective owners. All company, product and service names used in this website are for identification purposes only.*
+
+## Requirements
 
 	-  Java >= 1.8.0_151
 	-  Maven >= 3.3.0
     -  Docker running on local machine
 
-- Clone
+## Clone
 
 	-  Clone this project: `git clone http://github.com/hawkore/assembly-mule4-distribution-hk.git`
 	-  Change to directory: `cd assembly-mule4-distribution-hk`
 
-Versions so far:
+## Versions so far
 
 | image:version                                | Other tags | From                     |
 | -------------------------------------------- | ---------- | ------------------------ |
