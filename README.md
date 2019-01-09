@@ -1,5 +1,7 @@
 # Mule standalone v4.1.1 with Hawkore's cluster module
 
+![connector](assets/core-extension.png)
+
 - Requirements
 
 	-  Java >= 1.8.0_151
