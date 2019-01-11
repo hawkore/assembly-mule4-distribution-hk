@@ -55,7 +55,7 @@ Once assembly finishes you will get:
     * stand-alone assembly zip: **mule-ee-hk/target/mule-ee-standalone-hk-4.1.1.zip**
     * docker image: **docker.hawkore.com/hk/mule-ee-hk:4.1.1**
 
-# How to run a docker container
+## How to run a docker container
 
 Replace `mule-hk` by `mule-ee-hk` on below commands to run enterprise edition
  
@@ -72,7 +72,7 @@ $ bin/mule
 docker run --name mule-hk --rm docker.hawkore.com/hk/mule-hk:4.1.1
 ```
 
-# Overwrite default Mule container configuration:
+## Overwrite default Mule container configuration:
 
 HK Mule docker image has some mount points that you could mount on external volumes when create docker container, this easy change default configuration:
 
@@ -81,3 +81,7 @@ HK Mule docker image has some mount points that you could mount on external volu
 * `/opt/mule/domains`: mule domains directory.
 * `/opt/mule/conf`: mule configuration files.
 * `/opt/mule/work` : mule work directory (data storage).
+
+# Other resources
+
+Sign up at [www.hawkore.com](https://www.hawkore.com) to access full documentation.
