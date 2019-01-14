@@ -19,11 +19,11 @@
 
 | image:version                                | Other tags | From                     |
 | -------------------------------------------- | ---------- | ------------------------ |
-| **docker.hawkore.com/hk/mule-hk:4.1.1**      |            | lwieske/java-8:jdk-8u151 |
-| **docker.hawkore.com/hk/mule-ee-hk:4.1.1**   |            | lwieske/java-8:jdk-8u151 |
+| **docker.hawkore.com/hk/mule-hk:4.1.1**      |            | hawkore/oraclejdk:8u191 |
+| **docker.hawkore.com/hk/mule-ee-hk:4.1.1**   |            | hawkore/oraclejdk:8u191 |
 
 
-**Important:** Docker images are based on **lwieske/java-8:jdk-8u151**. Please note that docker images are for testing purposes only. You should manage your own **java-8 base docker image**. 
+**Important:** Docker images are based on **hawkore/oraclejdk:8u191**. Please note that docker images are for testing purposes only. You should manage your own **java-8 base docker image**. Using the image, you accept the [Oracle Binary Code License Agreement](https://www.oracle.com/technetwork/java/javase/terms/license/index.html) for Java SE.
 
 **Important**: Mule standalone version 4.1.1 zip file (community and/or enterprise) must be downloaded from Mulesoft and installed on your local maven repository. Please, preserve `groupId`, `artifactId`, `version` and `packaging` on below maven commands.
 

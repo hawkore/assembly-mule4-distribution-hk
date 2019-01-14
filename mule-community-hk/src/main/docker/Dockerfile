@@ -1,6 +1,6 @@
 # @mule.version@ and @parent.version@ is set by maven plugin. See 'https://dmp.fabric8.io/#docker:build' filtering.
 
-FROM lwieske/java-8:jdk-8u151
+FROM hawkore/oraclejdk:8u191
 
 MAINTAINER hawkore
 
@@ -8,14 +8,18 @@ ENV HK_VERSION=@project.parent.version@
 ENV VERSION=@project.parent.version@
 ENV ARTIFACT=mule-standalone-hk-$VERSION.zip
 
-# install ps and unzip, required by startup script
-RUN yum -qy update \ && yum -qy install procps unzip
+# install ps, required by startup script
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -yq --no-install-recommends procps unzip
 
 # Install mule
 COPY maven/$ARTIFACT /opt/$ARTIFACT
 RUN unzip /opt/$ARTIFACT -d /opt/ && rm /opt/$ARTIFACT
 RUN mv /opt/mule-standalone-hk-$VERSION /opt/mule
 ENV MULE_HOME /opt/mule
+
+# Cleanup
+RUN DEBIAN_FRONTEND=noninteractive apt-get purge -yq unzip && apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Define mount points.
 VOLUME ["/opt/mule/logs","/opt/mule/apps","/opt/mule/domains","/opt/mule/conf","/opt/mule/work"]
