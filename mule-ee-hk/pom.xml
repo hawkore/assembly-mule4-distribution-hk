@@ -343,13 +343,4 @@
 		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>thirdparty</id>
-			<name>MuleSoft Releases Repository</name>
-			<url>https://nexus.hawkore.com/repository/thirdparty</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-
 </project>
