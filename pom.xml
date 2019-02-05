@@ -48,17 +48,17 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-		<!-- 
+		<!--
 		change ignite.version value by hawkore.ignite.version value to add Hawkore's Advanced Ignite Indexing (Hawkore's Apache Ignite Version)
 		-->
 		<ignite.version>2.7.0</ignite.version>
-        <hawkore.ignite.version>2.7.0-hk</hawkore.ignite.version>
-				
+    <hawkore.ignite.version>2.7.1-hk</hawkore.ignite.version>
+
 		<mule.version>4.1.1</mule.version>
-	
+
 		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
 
-		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>	
+		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 		<maven-assembly-plugin.version>2.2.1</maven-assembly-plugin.version>
 		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -143,19 +143,19 @@
 		</plugins>
     </build>
 
-	<profiles>  
+	<profiles>
 	   	<profile>
 	   		<id>assembly-community</id>
 		    <modules>
 				<module>mule-community-hk</module>
-			</modules>	   
-	    </profile> 
+			</modules>
+	    </profile>
         <profile>
 	   		<id>assembly-ee</id>
 		    <modules>
 				<module>mule-ee-hk</module>
-			</modules>	   
-	    </profile> 	    	
+			</modules>
+	    </profile>
 	</profiles>
 
     <repositories>
@@ -171,7 +171,7 @@
 			<name>Hawkore Public Repository</name>
 			<url>https://repository.hawkore.com/maven2/</url>
 			<layout>default</layout>
-		</repository>     
+		</repository>
         <repository>
             <id>mulesoft-releases</id>
             <name>MuleSoft Releases Repository</name>
@@ -204,7 +204,7 @@
 			<name>Hawkore Public Repository</name>
 			<url>https://repository.hawkore.com/maven2/</url>
 			<layout>default</layout>
-		</pluginRepository>      	
+		</pluginRepository>
         <pluginRepository>
             <id>mulesoft-plugin-releases</id>
             <name>MuleSoft Release Repository</name>
