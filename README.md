@@ -6,6 +6,9 @@ Transparently, turn Mule standalone into a high performance clustered and horizo
 
 *All company names, logos, brand names and trademarks are property of their respective owners. All company, product and service names used in this website are for identification purposes only.*
 
+_[Apache Ignite(TM)](https://ignite.apache.org) is a memory-centric distributed database, caching, and processing platform for
+transactional, analytical, and streaming workloads, delivering in-memory speeds at petabyte scale._
+
 ## Requirements
 
 	-  Java >= 1.8.0_151
