@@ -373,7 +373,7 @@
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/ignite-spring-@@IGNITE_VERSION@@.jar
 
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/h2-1.4.197.jar
- 
+
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/json-simple-1.1.1.jar
 
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/kryo-serializers-0.37.jar
@@ -391,7 +391,7 @@
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/minlog-1.3.0.jar
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/objenesis-2.1.jar
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/protobuf-java-2.6.1.jar
-/mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/univocity-parsers-1.5.6.jar
+/mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/univocity-parsers-2.8.1.jar
 
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/hk-ignite-tools-@@HK_IGNITE_VERSION@@.jar
 /mule-ee-standalone-hk-@@HK_VERSION@@/lib/user/hk-ignite-serializer-@@HK_IGNITE_VERSION@@.jar

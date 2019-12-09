@@ -1,236 +1,237 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<!-- Version -->
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.hawkore</groupId>
-	<artifactId>hawkore-mule-distribution-parent</artifactId>
-	<version>4.1.1</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- Version -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hawkore</groupId>
+  <artifactId>hawkore-mule-distribution-parent</artifactId>
+  <version>4.1.2</version>
 
-	<packaging>pom</packaging>
+  <packaging>pom</packaging>
 
-    <!-- Organization -->
-    <organization>
-        <name>HAWKORE, S.L.</name>
-        <url>http://www.hawkore.com</url>
-    </organization>
-
-    <!-- Project -->
-    <name>Mule 4.1.1 standalone + HK cluster module</name>
-
-    <description>
-		Mule 4.1.1 standalone with Hawkore's cluster module based on Apache Ignite
-    </description>
+  <!-- Organization -->
+  <organization>
+    <name>HAWKORE, S.L.</name>
     <url>http://www.hawkore.com</url>
-    <inceptionYear>2017</inceptionYear>
-    <licenses>
-        <license>
-            <name>PRIVATE</name>
-            <url>http://www.hawkore.com/PRIVATE</url>
-        </license>
-    </licenses>
+  </organization>
+
+  <!-- Project -->
+  <name>Mule 4.1.1 standalone + HK cluster module</name>
+
+  <description>
+    Mule 4.1.1 standalone with Hawkore's cluster module based on Apache Ignite
+  </description>
+  <url>http://www.hawkore.com</url>
+  <inceptionYear>2017</inceptionYear>
+  <licenses>
+    <license>
+      <name>PRIVATE</name>
+      <url>http://www.hawkore.com/PRIVATE</url>
+    </license>
+  </licenses>
 
 
-    <developers>
-        <developer>
-            <id>manuel.nunez</id>
-            <name>Manuel Núñez Sánchez</name>
-            <email>manuel.nunez at hawkore dot com</email>
-        </developer>
-		<developer>
-			<id>jose.penalba</id>
-			<name>José Peñalba Morales</name>
-			<email>jose.penalba at hawkore dot com</email>
-		</developer>
-    </developers>
+  <developers>
+    <developer>
+      <id>manuel.nunez</id>
+      <name>Manuel Núñez Sánchez</name>
+      <email>manuel.nunez at hawkore dot com</email>
+    </developer>
+    <developer>
+      <id>jose.penalba</id>
+      <name>José Peñalba Morales</name>
+      <email>jose.penalba at hawkore dot com</email>
+    </developer>
+  </developers>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
 
-		<!--
-		change ignite.version value by hawkore.ignite.version value to add Hawkore's Advanced Ignite Indexing (Hawkore's Apache Ignite Version)
-		-->
-		<ignite.version>2.7.0</ignite.version>
+    <!--
+    change ignite.version value by hawkore.ignite.version value to add Hawkore's Advanced Ignite Indexing (Hawkore's Apache Ignite Version)
+    -->
+    <ignite.version>2.7.6</ignite.version>
     <hawkore.ignite.version>2.7.3-hk</hawkore.ignite.version>
 
-		<mule.version>4.1.1</mule.version>
+    <mule.version>4.1.1</mule.version>
 
-		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
+    <build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
 
-		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
-		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-		<maven-assembly-plugin.version>2.2.1</maven-assembly-plugin.version>
-		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+    <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+    <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+    <maven-assembly-plugin.version>2.2.1</maven-assembly-plugin.version>
+    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 
-        <jmh.version>1.20</jmh.version>
-        <jms.spec.version>1.1.1</jms.spec.version>
-		<junit.version>4.12</junit.version>
+    <jmh.version>1.20</jmh.version>
+    <jms.spec.version>1.1.1</jms.spec.version>
+    <junit.version>4.12</junit.version>
 
-        <jacoco-maven-plugin.version>0.7.8</jacoco-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.7.8</jacoco-maven-plugin.version>
 
-		<maven.deploy.skip>true</maven.deploy.skip>
-        <maven.install.skip>true</maven.install.skip>
-	</properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.install.skip>true</maven.install.skip>
+  </properties>
 
-    <build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>${maven-release-plugin.version}</version>
-				<configuration>
-					<tagNameFormat>v@{project.version}</tagNameFormat>
-				</configuration>
-			</plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.0.1</version>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven-release-plugin.version}</version>
+        <configuration>
+          <tagNameFormat>v@{project.version}</tagNameFormat>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>1.0.1</version>
 
-                <configuration>
-                    <flattenMode>minimum</flattenMode>
-                    <flattenedPomFilename>pom-installed.xml</flattenedPomFilename>
-                </configuration>
+        <configuration>
+          <flattenMode>minimum</flattenMode>
+          <flattenedPomFilename>pom-installed.xml</flattenedPomFilename>
+        </configuration>
 
-                <executions>
-                    <!-- enable flattening -->
-                    <execution>
-                        <id>flatten</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>flatten</goal>
-                        </goals>
-                    </execution>
+        <executions>
+          <!-- enable flattening -->
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
 
-                    <!-- ensure proper cleanup before start -->
-                    <execution>
-                        <id>flatten.clean.before</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+          <!-- ensure proper cleanup before start -->
+          <execution>
+            <id>flatten.clean.before</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
-            <!-- ensure proper cleanup after install -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <id>flatten.clean.after</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                        <configuration>
-                            <excludeDefaultDirectories>true</excludeDefaultDirectories>
-                            <filesets>
-                                <fileset>
-                                    <directory>${project.basedir}</directory>
-                                    <includes>
-                                        <include>**/pom-installed.xml</include>
-                                    </includes>
-                                </fileset>
-                            </filesets>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-		</plugins>
-    </build>
+      <!-- ensure proper cleanup after install -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>flatten.clean.after</id>
+            <phase>install</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+            <configuration>
+              <excludeDefaultDirectories>true</excludeDefaultDirectories>
+              <filesets>
+                <fileset>
+                  <directory>${project.basedir}</directory>
+                  <includes>
+                    <include>**/pom-installed.xml</include>
+                  </includes>
+                </fileset>
+              </filesets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
-	<profiles>
-	   	<profile>
-	   		<id>assembly-community</id>
-		    <modules>
-				<module>mule-community-hk</module>
-			</modules>
-	    </profile>
-        <profile>
-	   		<id>assembly-ee</id>
-		    <modules>
-				<module>mule-ee-hk</module>
-			</modules>
-	    </profile>
-	</profiles>
+  <profiles>
+    <profile>
+      <id>assembly-community</id>
+      <modules>
+        <module>mule-community-hk</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>assembly-ee</id>
+      <modules>
+        <module>mule-ee-hk</module>
+      </modules>
+    </profile>
+  </profiles>
 
-    <repositories>
-		<repository>
-		    <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <checksumPolicy>ignore</checksumPolicy>
-            </snapshots>
-			<id>public.hawkore.releases</id>
-			<name>Hawkore Public Repository</name>
-			<url>https://repository.hawkore.com/maven2/</url>
-			<layout>default</layout>
-		</repository>
-        <repository>
-            <id>mulesoft-releases</id>
-            <name>MuleSoft Releases Repository</name>
-            <url>http://repository.mulesoft.org/releases/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>mulesoft-snapshots</id>
-            <name>MuleSoft Snapshots Repository</name>
-            <url>http://repository.mulesoft.org/snapshots/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>mule</id>
-            <name>Mule Repository</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
-        </repository>
-    </repositories>
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <checksumPolicy>ignore</checksumPolicy>
+      </snapshots>
+      <id>public.hawkore.releases</id>
+      <name>Hawkore Public Repository</name>
+      <url>https://repository.hawkore.com/maven2/</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <id>mulesoft-releases</id>
+      <name>MuleSoft Releases Repository</name>
+      <url>http://repository.mulesoft.org/releases/</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <id>mulesoft-snapshots</id>
+      <name>MuleSoft Snapshots Repository</name>
+      <url>http://repository.mulesoft.org/snapshots/</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <id>mule</id>
+      <name>Mule Repository</name>
+      <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+    </repository>
+  </repositories>
 
-    <pluginRepositories>
-		<pluginRepository>
-		    <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <checksumPolicy>ignore</checksumPolicy>
-            </snapshots>
-			<id>public.hawkore.releases</id>
-			<name>Hawkore Public Repository</name>
-			<url>https://repository.hawkore.com/maven2/</url>
-			<layout>default</layout>
-		</pluginRepository>
-        <pluginRepository>
-            <id>mulesoft-plugin-releases</id>
-            <name>MuleSoft Release Repository</name>
-            <url>http://repository.mulesoft.org/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>mulesoft-plugin-snapshots</id>
-            <name>MuleSoft Snapshot Repository</name>
-            <url>http://repository.mulesoft.org/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>mule-plugin</id>
-            <name>Mule Repository</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <checksumPolicy>ignore</checksumPolicy>
+      </snapshots>
+      <id>public.hawkore.releases</id>
+      <name>Hawkore Public Repository</name>
+      <url>https://repository.hawkore.com/maven2/</url>
+      <layout>default</layout>
+    </pluginRepository>
+    <pluginRepository>
+      <id>mulesoft-plugin-releases</id>
+      <name>MuleSoft Release Repository</name>
+      <url>http://repository.mulesoft.org/releases/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>mulesoft-plugin-snapshots</id>
+      <name>MuleSoft Snapshot Repository</name>
+      <url>http://repository.mulesoft.org/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>mule-plugin</id>
+      <name>Mule Repository</name>
+      <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
