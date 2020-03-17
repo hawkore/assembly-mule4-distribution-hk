@@ -53,7 +53,7 @@
     change ignite.version value by hawkore.ignite.version value to add Hawkore's Advanced Ignite Indexing (Hawkore's Apache Ignite Version)
     -->
     <ignite.version>2.7.6</ignite.version>
-    <hawkore.ignite.version>2.7.3-hk</hawkore.ignite.version>
+    <hawkore.ignite.version>2.7.6-hk</hawkore.ignite.version>
 
     <mule.version>4.1.1</mule.version>
 
