@@ -24,8 +24,8 @@ transactional, analytical, and streaming workloads, delivering in-memory speeds 
 
 | image:version                                | Other tags | From                     |
 | -------------------------------------------- | ---------- | ------------------------ |
-| **docker.hawkore.com/hk/mule-hk:4.1.2**      |            | hawkore/openjdk:8u181 |
-| **docker.hawkore.com/hk/mule-ee-hk:4.1.2**   |            | hawkore/openjdk:8u181 |
+| **docker.hawkore.com/hk/mule-hk:4.1.3**      |            | hawkore/openjdk:8u181 |
+| **docker.hawkore.com/hk/mule-ee-hk:4.1.3**   |            | hawkore/openjdk:8u181 |
 
 
 **Important:** Docker images are based on **hawkore/openjdk:8u181**. Please note that docker images are for testing purposes only. You should manage your own **java-8 base docker image**.
@@ -53,12 +53,12 @@ mvn clean install -Passembly-community,assembly-ee,generate-assembly,attach-asse
 Once assembly finishes you will get:
 
 * Mule community edition + hk cluster module (`assembly-community`):
-    * stand-alone assembly zip: **mule-community-hk/target/mule-standalone-hk-4.1.2.zip**
-    * docker image: **docker.hawkore.com/hk/mule-hk:4.1.2**
+    * stand-alone assembly zip: **mule-community-hk/target/mule-standalone-hk-4.1.3.zip**
+    * docker image: **docker.hawkore.com/hk/mule-hk:4.1.3**
 
 * Mule enterprise edition + hk cluster module (`assembly-ee`):
-    * stand-alone assembly zip: **mule-ee-hk/target/mule-ee-standalone-hk-4.1.2.zip**
-    * docker image: **docker.hawkore.com/hk/mule-ee-hk:4.1.2**
+    * stand-alone assembly zip: **mule-ee-hk/target/mule-ee-standalone-hk-4.1.3.zip**
+    * docker image: **docker.hawkore.com/hk/mule-ee-hk:4.1.3**
 
 ## How to run a docker container
 
@@ -67,14 +67,14 @@ Replace `mule-hk` by `mule-ee-hk` on below commands to run enterprise edition
  - Manually
 
 ``` sh
-$ docker run --name mule-hk --rm -t -i docker.hawkore.com/hk/mule-hk:4.1.2 /bin/bash
+$ docker run --name mule-hk --rm -t -i docker.hawkore.com/hk/mule-hk:4.1.3 /bin/bash
 $ bin/mule
 ```
 
  - Backgroud
 
 ``` sh
-docker run --name mule-hk --rm docker.hawkore.com/hk/mule-hk:4.1.2
+docker run --name mule-hk --rm docker.hawkore.com/hk/mule-hk:4.1.3
 ```
 
 ## Overwrite default Mule container configuration:
