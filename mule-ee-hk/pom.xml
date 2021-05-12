@@ -22,7 +22,7 @@
     <groovyVersion>2.4.4</groovyVersion>
     <springVersion>4.3.18.RELEASE</springVersion>
     <springSecurityLdapVersion>2.3.2.RELEASE</springSecurityLdapVersion>
-    <springSecurityVersion>4.2.7.RELEASE</springSecurityVersion>
+    <springSecurityVersion>5.2.10.RELEASE</springSecurityVersion>
     <maven.deploy.skip>false</maven.deploy.skip>
     <maven.install.skip>false</maven.install.skip>
   </properties>
